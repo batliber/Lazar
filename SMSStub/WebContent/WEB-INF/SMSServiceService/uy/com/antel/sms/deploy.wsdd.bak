@@ -1,0 +1,30 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from SMSServiceService WSDL service -->
+
+  <service name="SMSService" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://sms.antel.com.uy"/>
+      <parameter name="wsdlServiceElement" value="SMSServiceService"/>
+      <parameter name="schemaQualified" value="http://sms.antel.com.uy"/>
+      <parameter name="wsdlServicePort" value="SMSService"/>
+      <parameter name="className" value="uy.com.antel.sms.SMSServiceSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="SMSService"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="sendSMS" qname="operNS:sendSMS" xmlns:operNS="http://sms.antel.com.uy" soapAction="" >
+        <parameter qname="pns:number" xmlns:pns="http://sms.antel.com.uy" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:message" xmlns:pns="http://sms.antel.com.uy" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <parameter name="allowedMethods" value="sendSMS"/>
+
+  </service>
+</deployment>
