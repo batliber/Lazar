@@ -3,8 +3,9 @@
 	<name>Lazar</name>
 	<comment></comment>
 	<projects>
-		<project>SMSStub</project>
+		<project>SMSAssistantEJB</project>
 		<project>SMSAssistantWEB</project>
+		<project>SMSStub</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
