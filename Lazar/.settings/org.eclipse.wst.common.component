@@ -5,7 +5,7 @@
             <dependent-object/>
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="SMSAssistant.war" deploy-path="/" handle="module:/resource/SMSAssistant/SMSAssistant">
+        <dependent-module archiveName="SMSAssistantWEB.war" deploy-path="/" handle="module:/resource/SMSAssistantWEB/SMSAssistantWEB">
             <dependent-object/>
             <dependency-type>uses</dependency-type>
         </dependent-module>
