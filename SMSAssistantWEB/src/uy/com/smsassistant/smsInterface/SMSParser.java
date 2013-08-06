@@ -8,8 +8,7 @@ public class SMSParser {
 		ScheduleData result = new ScheduleData();
 		result.setBoxId("1234");
 		result.setMessageToSend("A tomar el medicamento!");
-		result.setNumber("099455097");
-		result.setReceivedMessage("1234 8 12:00");
+		result.setReceivedMessage(message);
 		
 		return result;
 	}

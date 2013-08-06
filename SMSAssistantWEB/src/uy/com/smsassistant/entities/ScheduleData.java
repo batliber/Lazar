@@ -1,5 +1,8 @@
 package uy.com.smsassistant.entities;
 
+import org.directwebremoting.annotations.DataTransferObject;
+
+@DataTransferObject
 public class ScheduleData {
 
 	private Integer id;

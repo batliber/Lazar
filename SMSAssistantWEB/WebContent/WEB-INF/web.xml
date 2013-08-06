@@ -36,7 +36,9 @@
       <param-value>
       	uy.com.smsassistant.dwr.TestSMSSenderDWR,
       	uy.com.smsassistant.dwr.TestSchedulingDWR,
-      	uy.com.smsassistant.dwr.SchedulerDWR
+      	uy.com.smsassistant.dwr.SchedulerDWR,
+      	
+      	uy.com.smsassistant.entities.ScheduleData
       </param-value>
     </init-param>
   </servlet>
