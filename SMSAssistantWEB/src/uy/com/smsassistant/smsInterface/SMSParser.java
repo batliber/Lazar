@@ -1,14 +1,16 @@
 package uy.com.smsassistant.smsInterface;
 
-import uy.com.smsassistant.entities.ScheduleData;
+import java.util.HashMap;
+import java.util.Map;
 
-public class SMSParser {
+public class SMSParser implements ISMSParser {
 
-	public ScheduleData parseSMS(String message) {
-		ScheduleData result = new ScheduleData();
-		result.setBoxId("1234");
-		result.setMessageToSend("A tomar el medicamento!");
-		result.setReceivedMessage(message);
+	public Map<String, String> parseSMS(String message) {
+		Map<String, String> result = new HashMap<String, String>();
+		
+		result.put("boxId", "1234");
+		result.put("messageToSend", "A tomar el medicamento!");
+		result.put("receivedMessage", message);
 		
 		return result;
 	}

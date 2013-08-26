@@ -3,8 +3,9 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>SMSAssistant</title>
-	<script type='text/javascript' src='/SMSAssistant/dwr/engine.js'></script>
-	<script type='text/javascript' src='/SMSAssistant/dwr/util.js'></script>
+	<script type='text/javascript' src='/SMSAssistantWEB/dwr/engine.js'></script>
+	<script type='text/javascript' src='/SMSAssistantWEB/dwr/util.js'></script>
+	<script type="text/javascript" src="/SMSAssistantWEB/dwr/interface/SchedulerDWR.js"></script>
 </head>
 <body>
 </body>

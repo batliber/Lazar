@@ -57,4 +57,15 @@ public class SchedulerBean implements ISchedulerBean{
 		
 		return result;
 	}
+
+
+	public void clearSchedules() {
+		try {
+			Query query = entityManager.createQuery("DELETE FROM Schedule");
+			
+			query.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

@@ -14,4 +14,6 @@ public interface ISchedulerBean {
 	public Collection<Schedule> listSchedules();
 
 	public Schedule findScheduleById(Integer id);
+
+	public void clearSchedules();
 }

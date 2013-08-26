@@ -2,6 +2,7 @@ package uy.com.smsassistant.dwr;
 
 import java.util.Collection;
 import java.util.LinkedList;
+import java.util.Map;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -11,9 +12,11 @@ import org.quartz.CronScheduleBuilder;
 import org.quartz.CronTrigger;
 import org.quartz.JobBuilder;
 import org.quartz.JobDetail;
+import org.quartz.JobKey;
 import org.quartz.Scheduler;
 import org.quartz.TriggerBuilder;
 import org.quartz.impl.StdSchedulerFactory;
+import org.quartz.impl.matchers.GroupMatcher;
 
 import uy.com.smsassistant.bean.ISchedulerBean;
 import uy.com.smsassistant.bean.SchedulerBean;
@@ -30,7 +33,12 @@ public class SchedulerDWR {
 			// Parseo del SMS
 			SMSParser sMSParser = new SMSParser();
 			
-			ScheduleData scheduleData = sMSParser.parseSMS(message);
+			Map<String, String> smsData = sMSParser.parseSMS(message);
+			
+			ScheduleData scheduleData = new ScheduleData();
+			scheduleData.setBoxId(smsData.get("boxId"));
+			scheduleData.setMessageToSend(smsData.get("messageToSend"));
+			scheduleData.setReceivedMessage(smsData.get("receivedMessage"));
 			scheduleData.setNumber(number);
 			
 			// Lookup del EJB
@@ -111,5 +119,28 @@ public class SchedulerDWR {
 		}
 		
 		return result;
+	}
+
+	public void clearScheduledEvents() {
+		try {
+			// Lookup del EJB
+			String EARName = "Lazar";
+			String beanName = SchedulerBean.class.getSimpleName();
+			String remoteInterfaceName = ISchedulerBean.class.getName();
+			String lookupName = EARName + "/" + beanName + "/remote-" + remoteInterfaceName;
+			
+			Context context = new InitialContext();
+			ISchedulerBean schedulerBean = (ISchedulerBean) context.lookup(lookupName);
+			
+			schedulerBean.clearSchedules();
+			
+			Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
+			
+			for (JobKey jobKey : scheduler.getJobKeys(GroupMatcher.jobGroupEquals("SMSAssistant"))) {
+				scheduler.deleteJob(jobKey);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }
